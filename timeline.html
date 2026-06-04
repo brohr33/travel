@@ -377,6 +377,49 @@
       font-size: 14px;
     }
 
+    .cost-summary {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 12px;
+      margin-top: 14px;
+    }
+
+    .cost-card {
+      min-height: 154px;
+      padding: 14px;
+      border: 1px solid var(--line);
+      background: #fff;
+    }
+
+    .cost-card b {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--muted);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+    }
+
+    .cost-card strong {
+      display: block;
+      color: var(--blue);
+      font-size: 21px;
+      line-height: 1.12;
+    }
+
+    .cost-card span {
+      display: block;
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .cost-footnote {
+      margin-top: 12px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
     @media print {
       body { background: #fff; }
       main { max-width: none; padding: 0; }
@@ -387,7 +430,7 @@
 
     @media (max-width: 860px) {
       main { padding: 18px 12px 44px; }
-      header, .overview-grid { grid-template-columns: 1fr; }
+      header, .overview-grid, .cost-summary { grid-template-columns: 1fr; }
       header, section, .day { padding: 18px; }
       .day { grid-template-columns: 1fr; }
       .day-marker { position: static; }
@@ -814,6 +857,38 @@
         </div>
       </section>
     </div>
+
+    <section>
+      <h2>Expected Cost Summary</h2>
+      <div class="cost-summary">
+        <article class="cost-card">
+          <b>Flight points and taxes</b>
+          <strong>75k C1 + CAD 143</strong>
+          <span>CVG-IAD-FRA-BUD business-class Standard Reward, shown per traveler. Conservative view for 2: 150k C1 + CAD 286.</span>
+        </article>
+        <article class="cost-card">
+          <b>Repositioning flight</b>
+          <strong>USD 101 shown</strong>
+          <span>Aegean BUD-ATH nonstop, 6:55 PM-9:50 PM on Jul 17. If priced per traveler, budget USD 202 for 2.</span>
+        </article>
+        <article class="cost-card">
+          <b>Hotels</b>
+          <strong>USD 400-630</strong>
+          <span>Athens Jul 17 estimated USD 180-280 and Barcelona Jul 25 estimated USD 220-350. No Budapest hotel.</span>
+        </article>
+        <article class="cost-card">
+          <b>Cruise cost</b>
+          <strong>USD 6,036.82</strong>
+          <span>Celebrity Xcel, Prime AquaClass, room 10247, reservation 5007013.</span>
+        </article>
+        <article class="cost-card">
+          <b>BCN to CVG</b>
+          <strong>61.2k + EUR 43</strong>
+          <span>Delta return via Boston, shown per traveler. Conservative view for 2: 122.4k Delta + EUR 86.</span>
+        </article>
+      </div>
+      <p class="cost-footnote">Known totals keep currencies separate. Food, transfers, timed-entry tickets, cruise excursions, insurance, and incidental spending are not included in this summary.</p>
+    </section>
 
     <section>
       <div class="print-row">
