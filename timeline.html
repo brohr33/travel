@@ -414,6 +414,17 @@
       font-size: 13px;
     }
 
+    .cost-card.total {
+      grid-column: 1 / -1;
+      min-height: auto;
+      border-color: #b8d4ea;
+      background: #f7fbff;
+    }
+
+    .cost-card.total strong {
+      font-size: clamp(26px, 4vw, 36px);
+    }
+
     .cost-footnote {
       margin-top: 12px;
       color: var(--muted);
@@ -872,9 +883,14 @@
           <span>Aegean BUD-ATH nonstop, 6:55 PM-9:50 PM on Jul 17. If priced per traveler, budget USD 202 for 2.</span>
         </article>
         <article class="cost-card">
-          <b>Hotels</b>
-          <strong>USD 400-630</strong>
-          <span>Athens Jul 17 estimated USD 180-280 and Barcelona Jul 25 estimated USD 220-350. No Budapest hotel.</span>
+          <b>Athens hotel</b>
+          <strong>USD 180-280</strong>
+          <span>Jul 17 target: Herodion Hotel or a similar Acropolis / Plaka area hotel.</span>
+        </article>
+        <article class="cost-card">
+          <b>Barcelona hotel</b>
+          <strong>USD 220-350</strong>
+          <span>Jul 25 target: Hotel Barcelona Catedral or a similar Gothic Quarter / El Born area hotel.</span>
         </article>
         <article class="cost-card">
           <b>Cruise cost</b>
@@ -885,6 +901,11 @@
           <b>BCN to CVG</b>
           <strong>61.2k + EUR 43</strong>
           <span>Delta return via Boston, shown per traveler. Conservative view for 2: 122.4k Delta + EUR 86.</span>
+        </article>
+        <article class="cost-card total">
+          <b>Total expected cash cost</b>
+          <strong>USD 6,537.82-6,767.82 + CAD 143 + EUR 43</strong>
+          <span>As shown: cruise + BUD-ATH + Athens hotel estimate + Barcelona hotel estimate, plus award taxes. Points not converted to cash. Conservative two-person award view: add CAD 286 and EUR 86 instead, and use USD 6,638.82-6,868.82 if the BUD-ATH fare is per traveler.</span>
         </article>
       </div>
       <p class="cost-footnote">Known totals keep currencies separate. Food, transfers, timed-entry tickets, cruise excursions, insurance, and incidental spending are not included in this summary.</p>
