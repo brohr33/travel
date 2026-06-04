@@ -153,6 +153,34 @@
       color: #57410e;
     }
 
+    .timeline-callout {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: center;
+      margin-top: 16px;
+      padding: 14px 16px;
+      border: 1px solid #b8d4ea;
+      background: #f7fbff;
+    }
+
+    .timeline-callout p {
+      margin-bottom: 0;
+      color: #3e4c5f;
+      font-size: 14px;
+    }
+
+    .timeline-callout a {
+      flex: 0 0 auto;
+      padding: 8px 10px;
+      border: 1px solid var(--blue);
+      background: var(--blue);
+      color: #fff;
+      font-size: 13px;
+      font-weight: 850;
+      text-decoration: none;
+    }
+
     .risk {
       border-left-color: var(--red);
       background: #fff4f2;
@@ -400,6 +428,12 @@
         gap: 4px;
       }
       .cost-line strong { text-align: left; }
+      .timeline-callout {
+        display: grid;
+      }
+      .timeline-callout a {
+        justify-self: start;
+      }
       table, thead, tbody, tr, th, td { display: block; }
       thead {
         position: absolute;
@@ -479,6 +513,10 @@
           <p class="price">Delta via BOS</p>
           <p class="small">BCN-CVG on Jul 26: 3:15 PM-11:16 PM, 14h 1m total, 3h 4m Boston layover, 61,200 miles + EUR 43 shown.</p>
         </div>
+      </div>
+      <div class="timeline-callout">
+        <p><strong>Need every day accounted for?</strong> Use the full vertical timeline for exact departures, arrivals, layovers, cruise port windows, and planning gaps.</p>
+        <a href="timeline.html">Open full timeline</a>
       </div>
       <p class="note risk" style="margin-top:16px;">Timing note: the Budapest award lands at 8:55 AM on Jul 17, which leaves a usable but finite layover before the 6:55 PM Athens flight. Keep Budapest to a central Pest lunch-and-walk plan, then return to BUD around 4:45-5:00 PM.</p>
     </section>

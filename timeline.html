@@ -1,0 +1,829 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Trip Timeline - Greece, Malta & Turkey Cruise 2026</title>
+  <style>
+    :root {
+      --ink: #172033;
+      --muted: #667085;
+      --line: #d9e2ec;
+      --paper: #f6f8fb;
+      --panel: #ffffff;
+      --blue: #245f8f;
+      --teal: #2f7f7a;
+      --gold: #b7791f;
+      --red: #b42318;
+      --lav: #6f5fa8;
+      --green-bg: #eef9f7;
+      --blue-bg: #f2f7fc;
+      --gold-bg: #fff8e8;
+      --red-bg: #fff4f2;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--paper);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.45;
+    }
+
+    main {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 28px 20px 64px;
+    }
+
+    a {
+      color: var(--blue);
+      text-decoration: none;
+    }
+
+    a:hover { text-decoration: underline; }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: center;
+      margin-bottom: 18px;
+    }
+
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .nav-links a {
+      display: inline-flex;
+      align-items: center;
+      min-height: 36px;
+      padding: 7px 10px;
+      border: 1px solid var(--line);
+      background: #fff;
+      color: var(--ink);
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    header {
+      display: grid;
+      grid-template-columns: 1.4fr .9fr;
+      gap: 24px;
+      align-items: end;
+      padding: 28px;
+      border: 1px solid var(--line);
+      background: linear-gradient(135deg, #f7fbff 0%, #ffffff 64%);
+    }
+
+    h1, h2, h3, p { margin-top: 0; }
+
+    h1 {
+      margin-bottom: 10px;
+      font-size: clamp(32px, 5vw, 56px);
+      line-height: 1.03;
+      letter-spacing: 0;
+    }
+
+    h2 {
+      margin-bottom: 12px;
+      font-size: 22px;
+      letter-spacing: 0;
+    }
+
+    h3 {
+      margin-bottom: 7px;
+      font-size: 16px;
+      letter-spacing: 0;
+    }
+
+    .eyebrow {
+      margin-bottom: 12px;
+      color: var(--blue);
+      font-size: 13px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+    }
+
+    .lede {
+      max-width: 760px;
+      margin-bottom: 0;
+      color: #3e4c5f;
+      font-size: 17px;
+    }
+
+    .hero-panel {
+      display: grid;
+      gap: 10px;
+      padding: 16px;
+      border: 1px solid var(--line);
+      background: #fff;
+    }
+
+    .hero-stat {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--line);
+      font-size: 14px;
+    }
+
+    .hero-stat:last-child {
+      padding-bottom: 0;
+      border-bottom: 0;
+    }
+
+    .hero-stat span {
+      color: var(--muted);
+      font-weight: 800;
+    }
+
+    .hero-stat strong {
+      text-align: right;
+    }
+
+    section {
+      margin-top: 24px;
+      padding: 24px;
+      border: 1px solid var(--line);
+      background: var(--panel);
+    }
+
+    .overview-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+
+    .overview-item {
+      padding: 14px;
+      border: 1px solid var(--line);
+      background: #fff;
+    }
+
+    .overview-item b {
+      display: block;
+      margin-bottom: 3px;
+      color: var(--muted);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+    }
+
+    .overview-item strong {
+      display: block;
+      color: var(--blue);
+      font-size: 22px;
+      line-height: 1.1;
+    }
+
+    .overview-item span {
+      display: block;
+      margin-top: 5px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .day-nav {
+      position: sticky;
+      top: 0;
+      z-index: 2;
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      margin: 24px -20px 0;
+      padding: 12px 20px;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      background: rgba(246, 248, 251, .94);
+      backdrop-filter: blur(10px);
+    }
+
+    .day-nav a {
+      flex: 0 0 auto;
+      padding: 8px 10px;
+      border: 1px solid var(--line);
+      background: #fff;
+      color: var(--ink);
+      font-size: 12px;
+      font-weight: 850;
+    }
+
+    .timeline {
+      display: grid;
+      gap: 18px;
+      margin-top: 24px;
+    }
+
+    .day {
+      display: grid;
+      grid-template-columns: 156px 1fr;
+      gap: 20px;
+      align-items: start;
+      padding: 22px;
+      border: 1px solid var(--line);
+      background: var(--panel);
+    }
+
+    .day-marker {
+      position: sticky;
+      top: 74px;
+    }
+
+    .date {
+      color: var(--blue);
+      font-size: 14px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+    }
+
+    .day-name {
+      margin-top: 5px;
+      font-size: 24px;
+      font-weight: 900;
+      line-height: 1.08;
+    }
+
+    .day-context {
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .day-body {
+      position: relative;
+      display: grid;
+      gap: 12px;
+      padding-left: 24px;
+    }
+
+    .day-body::before {
+      content: "";
+      position: absolute;
+      top: 6px;
+      bottom: 6px;
+      left: 6px;
+      width: 2px;
+      background: var(--line);
+    }
+
+    .event {
+      position: relative;
+      display: grid;
+      grid-template-columns: 128px 1fr;
+      gap: 16px;
+      padding: 14px;
+      border: 1px solid #e6edf4;
+      background: #fff;
+    }
+
+    .event::before {
+      content: "";
+      position: absolute;
+      left: -23px;
+      top: 22px;
+      width: 12px;
+      height: 12px;
+      border: 2px solid var(--blue);
+      background: #fff;
+    }
+
+    .event.travel::before { border-color: var(--blue); }
+    .event.layover::before { border-color: var(--gold); }
+    .event.port::before { border-color: var(--teal); }
+    .event.open::before { border-color: var(--lav); }
+    .event.risk::before { border-color: var(--red); }
+
+    .time {
+      color: var(--ink);
+      font-size: 13px;
+      font-weight: 900;
+      line-height: 1.25;
+    }
+
+    .time span {
+      display: block;
+      margin-top: 4px;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+    }
+
+    .event h3 {
+      margin-bottom: 4px;
+      font-size: 16px;
+    }
+
+    .event p {
+      margin-bottom: 10px;
+      color: #3e4c5f;
+      font-size: 14px;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      min-height: 26px;
+      padding: 4px 8px;
+      border: 1px solid var(--line);
+      background: #fbfdff;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .tag.travel { background: var(--blue-bg); color: var(--blue); border-color: #c6d9ea; }
+    .tag.layover { background: var(--gold-bg); color: #715214; border-color: #efd490; }
+    .tag.port { background: var(--green-bg); color: var(--teal); border-color: #b7d7d3; }
+    .tag.risk { background: var(--red-bg); color: var(--red); border-color: #f4b9b0; }
+
+    .note {
+      margin-top: 14px;
+      border-left: 4px solid var(--gold);
+      padding: 12px 14px;
+      background: var(--gold-bg);
+      color: #57410e;
+      font-size: 14px;
+    }
+
+    .print-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: center;
+    }
+
+    .print-row p {
+      margin-bottom: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    @media print {
+      body { background: #fff; }
+      main { max-width: none; padding: 0; }
+      .topbar, .day-nav { display: none; }
+      header, section, .day { break-inside: avoid; }
+      .day-marker { position: static; }
+    }
+
+    @media (max-width: 860px) {
+      main { padding: 18px 12px 44px; }
+      header, .overview-grid { grid-template-columns: 1fr; }
+      header, section, .day { padding: 18px; }
+      .day { grid-template-columns: 1fr; }
+      .day-marker { position: static; }
+      .day-body { padding-left: 18px; }
+      .event { grid-template-columns: 1fr; gap: 8px; }
+      .topbar { align-items: flex-start; flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="topbar">
+      <div class="nav-links">
+        <a href="index.html">Overview</a>
+        <a href="#jul16">Start</a>
+        <a href="#jul18">Embarkation</a>
+        <a href="#jul26">Return</a>
+      </div>
+    </div>
+
+    <header>
+      <div>
+        <p class="eyebrow">Vertical trip timeline</p>
+        <h1>Full Trip Timeline</h1>
+        <p class="lede">Every travel day, layover, cruise port, open planning window, and transfer checkpoint from Cincinnati to Budapest, Athens, Barcelona, and back home.</p>
+      </div>
+      <div class="hero-panel">
+        <div class="hero-stat"><span>Trip span</span><strong>Jul 16-26, 2026</strong></div>
+        <div class="hero-stat"><span>Outbound route</span><strong>CVG-IAD-FRA-BUD-ATH</strong></div>
+        <div class="hero-stat"><span>Cruise</span><strong>Jul 18-25</strong></div>
+        <div class="hero-stat"><span>Return route</span><strong>BCN-BOS-CVG</strong></div>
+      </div>
+    </header>
+
+    <section>
+      <h2>At A Glance</h2>
+      <div class="overview-grid">
+        <div class="overview-item"><b>Known layovers</b><strong>3</strong><span>IAD 7h 51m, FRA 1h 50m, BOS 3h 4m</span></div>
+        <div class="overview-item"><b>Positioning day</b><strong>Jul 17</strong><span>Budapest layover, then evening Athens flight</span></div>
+        <div class="overview-item"><b>Cruise ports</b><strong>5</strong><span>Athens, Santorini, Mykonos, Kusadasi, Valletta</span></div>
+        <div class="overview-item"><b>Sea days</b><strong>2</strong><span>Jul 22 and Jul 24</span></div>
+      </div>
+      <p class="note">Boston arrival and departure clock times were not shown in the current return-flight details. The timeline accounts for the known 3h 4m BOS layover and the overall BCN 3:15 PM to CVG 11:16 PM travel window.</p>
+    </section>
+
+    <nav class="day-nav" aria-label="Timeline day links">
+      <a href="#jul16">Jul 16</a>
+      <a href="#jul17">Jul 17</a>
+      <a href="#jul18">Jul 18</a>
+      <a href="#jul19">Jul 19</a>
+      <a href="#jul20">Jul 20</a>
+      <a href="#jul21">Jul 21</a>
+      <a href="#jul22">Jul 22</a>
+      <a href="#jul23">Jul 23</a>
+      <a href="#jul24">Jul 24</a>
+      <a href="#jul25">Jul 25</a>
+      <a href="#jul26">Jul 26</a>
+    </nav>
+
+    <div class="timeline">
+      <section class="day" id="jul16">
+        <div class="day-marker">
+          <div class="date">Thu Jul 16</div>
+          <div class="day-name">Outbound</div>
+          <div class="day-context">Cincinnati to Washington Dulles, then overnight to Frankfurt.</div>
+        </div>
+        <div class="day-body">
+          <article class="event open">
+            <div class="time">4:30 AM target<span>Airport buffer</span></div>
+            <div>
+              <h3>Arrive at CVG</h3>
+              <p>Recommended airport arrival target for an international award itinerary that starts with a domestic United Express segment.</p>
+              <div class="tags"><span class="tag">Buffer</span><span class="tag">Check bags</span></div>
+            </div>
+          </article>
+          <article class="event travel">
+            <div class="time">6:00-7:34 AM<span>1h 34m</span></div>
+            <div>
+              <h3>CVG to IAD</h3>
+              <p>UA3489 / E7W, operated by Republic Airways dba United Express. Depart Cincinnati/Northern Kentucky and arrive Washington Dulles.</p>
+              <div class="tags"><span class="tag travel">Flight</span><span class="tag">CVG-IAD</span></div>
+            </div>
+          </article>
+          <article class="event layover">
+            <div class="time">7:34 AM-3:25 PM<span>7h 51m</span></div>
+            <div>
+              <h3>Washington Dulles layover</h3>
+              <p>Longest connection of the outbound. Use this for breakfast/lunch, walking, lounge time if available, and a low-stress international boarding reset.</p>
+              <div class="tags"><span class="tag layover">IAD layover</span><span class="tag">Known duration</span></div>
+            </div>
+          </article>
+          <article class="event travel">
+            <div class="time">3:25 PM<span>Departs IAD</span></div>
+            <div>
+              <h3>IAD to Frankfurt overnight</h3>
+              <p>LH417 on Lufthansa, Airbus A340-600. Scheduled flight duration is 8h 5m, arriving Frankfurt the next morning.</p>
+              <div class="tags"><span class="tag travel">Flight</span><span class="tag">Business class award</span><span class="tag">Overnight</span></div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="day" id="jul17">
+        <div class="day-marker">
+          <div class="date">Fri Jul 17</div>
+          <div class="day-name">Budapest to Athens</div>
+          <div class="day-context">Frankfurt connection, Budapest day layover, then evening flight to Athens.</div>
+        </div>
+        <div class="day-body">
+          <article class="event travel">
+            <div class="time">5:30 AM<span>Arrive FRA</span></div>
+            <div>
+              <h3>Arrive Frankfurt Terminal 1</h3>
+              <p>Inbound LH417 arrives from Washington Dulles. Stay airside if possible for the short Budapest connection.</p>
+              <div class="tags"><span class="tag travel">Arrival</span><span class="tag">Terminal 1</span></div>
+            </div>
+          </article>
+          <article class="event layover">
+            <div class="time">5:30-7:20 AM<span>1h 50m</span></div>
+            <div>
+              <h3>Frankfurt layover</h3>
+              <p>Short but reasonable connection window. Prioritize gate check, restroom, and coffee only if timing is comfortable.</p>
+              <div class="tags"><span class="tag layover">FRA layover</span><span class="tag">Known duration</span></div>
+            </div>
+          </article>
+          <article class="event travel">
+            <div class="time">7:20-8:55 AM<span>1h 35m</span></div>
+            <div>
+              <h3>Frankfurt to Budapest</h3>
+              <p>LH1334 on Lufthansa, Airbus A320. Arrives Budapest Liszt Ferenc International Airport, Terminal 2A.</p>
+              <div class="tags"><span class="tag travel">Flight</span><span class="tag">FRA-BUD</span></div>
+            </div>
+          </article>
+          <article class="event open">
+            <div class="time">8:55-10:15 AM<span>Arrival tasks</span></div>
+            <div>
+              <h3>Clear arrival and store bags</h3>
+              <p>Clear immigration, collect luggage if checked through only to BUD, and use airport baggage storage if needed before going into town.</p>
+              <div class="tags"><span class="tag">BUD Terminal 2A</span><span class="tag">Bags</span></div>
+            </div>
+          </article>
+          <article class="event open">
+            <div class="time">10:30-11:15 AM<span>Transfer</span></div>
+            <div>
+              <h3>BUD to central Pest</h3>
+              <p>Take the 100E Airport Express or taxi to Deak Ferenc ter. Keep the whole layover centered around Deak / Basilica / Danube.</p>
+              <div class="tags"><span class="tag">100E or taxi</span><span class="tag">Deak Ferenc ter</span></div>
+            </div>
+          </article>
+          <article class="event open">
+            <div class="time">11:15 AM-3:15 PM<span>Budapest window</span></div>
+            <div>
+              <h3>Central Pest lunch-and-walk plan</h3>
+              <p>St. Stephen's Basilica, Liberty Square, Parliament exterior, Danube promenade, lunch, coffee, and a no-rush return. Skip baths, Buda Castle, Parliament interior, and river cruises on this timing.</p>
+              <div class="tags"><span class="tag">Sightseeing</span><span class="tag">Lunch</span><span class="tag risk">Keep compact</span></div>
+            </div>
+          </article>
+          <article class="event risk">
+            <div class="time">3:30-5:00 PM<span>Return buffer</span></div>
+            <div>
+              <h3>Return to Budapest Airport</h3>
+              <p>Leave central Pest around 3:30-3:45 PM and aim to be back at BUD by 4:45-5:00 PM for the 6:55 PM Athens flight.</p>
+              <div class="tags"><span class="tag risk">Do not stretch</span><span class="tag">Airport target</span></div>
+            </div>
+          </article>
+          <article class="event travel">
+            <div class="time">6:55-9:50 PM<span>1h 55m</span></div>
+            <div>
+              <h3>Budapest to Athens</h3>
+              <p>Aegean nonstop BUD-ATH. Arrive Athens the night before cruise embarkation.</p>
+              <div class="tags"><span class="tag travel">Flight</span><span class="tag">BUD-ATH</span></div>
+            </div>
+          </article>
+          <article class="event open">
+            <div class="time">10:30 PM target<span>Hotel transfer</span></div>
+            <div>
+              <h3>Transfer to Herodion Hotel</h3>
+              <p>Use an official taxi or pre-booked transfer from ATH to the Acropolis / Plaka area. Keep the night to check-in and sleep.</p>
+              <div class="tags"><span class="tag">Herodion Hotel</span><span class="tag">Acropolis area</span></div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="day" id="jul18">
+        <div class="day-marker">
+          <div class="date">Sat Jul 18</div>
+          <div class="day-name">Athens / Embarkation</div>
+          <div class="day-context">Short Athens morning, transfer to Piraeus, ship departs 5:00 PM.</div>
+        </div>
+        <div class="day-body">
+          <article class="event open">
+            <div class="time">7:15 AM<span>Start</span></div>
+            <div>
+              <h3>Breakfast and checkout prep</h3>
+              <p>Keep bags ready before sightseeing so the return-to-hotel step is fast.</p>
+              <div class="tags"><span class="tag">Hotel</span><span class="tag">Bags ready</span></div>
+            </div>
+          </article>
+          <article class="event port">
+            <div class="time">8:00-9:45 AM<span>Timed entry target</span></div>
+            <div>
+              <h3>Acropolis</h3>
+              <p>Book the first available morning entry if possible. This is the best use of the short Athens window before the cruise.</p>
+              <div class="tags"><span class="tag port">Athens</span><span class="tag">Timed ticket</span></div>
+            </div>
+          </article>
+          <article class="event open">
+            <div class="time">10:00-11:15 AM<span>Flexible</span></div>
+            <div>
+              <h3>Acropolis Museum or Plaka</h3>
+              <p>Use this as a flexible second stop. If the morning runs late, skip the museum and keep Plaka / coffee nearby.</p>
+              <div class="tags"><span class="tag">Optional</span><span class="tag">Keep nearby</span></div>
+            </div>
+          </article>
+          <article class="event risk">
+            <div class="time">12:00-1:45 PM<span>Transfer window</span></div>
+            <div>
+              <h3>Collect bags and taxi to Piraeus</h3>
+              <p>Return to the hotel, collect bags, and leave around 12:30 PM. Target cruise terminal arrival around 1:15-1:45 PM.</p>
+              <div class="tags"><span class="tag risk">Cruise buffer</span><span class="tag">Piraeus</span></div>
+            </div>
+          </article>
+          <article class="event travel">
+            <div class="time">5:00 PM<span>Ship departs</span></div>
+            <div>
+              <h3>Celebrity Xcel departs Athens/Piraeus</h3>
+              <p>Boarded and settled before departure. This starts the 7-night Greece, Malta & Turkey cruise.</p>
+              <div class="tags"><span class="tag travel">Embarkation</span><span class="tag">Day 1</span></div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="day" id="jul19">
+        <div class="day-marker">
+          <div class="date">Sun Jul 19</div>
+          <div class="day-name">Santorini</div>
+          <div class="day-context">Long port day with tender/cable-car logistics.</div>
+        </div>
+        <div class="day-body">
+          <article class="event port">
+            <div class="time">7:00 AM-10:00 PM<span>15h in port</span></div>
+            <div>
+              <h3>Santorini, Greece</h3>
+              <p>Long port day. Plan around tendering and cable-car waits, especially if choosing Oia, wine, beaches, or sunset timing.</p>
+              <div class="tags"><span class="tag port">Cruise day 2</span><span class="tag risk">Tender logistics</span></div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="day" id="jul20">
+        <div class="day-marker">
+          <div class="date">Mon Jul 20</div>
+          <div class="day-name">Mykonos</div>
+          <div class="day-context">Town, beaches, or Delos if offered.</div>
+        </div>
+        <div class="day-body">
+          <article class="event port">
+            <div class="time">7:00 AM-7:00 PM<span>12h in port</span></div>
+            <div>
+              <h3>Mykonos, Greece</h3>
+              <p>Good day for Mykonos town, beaches, or a Delos excursion if the ship schedule and tour timing work.</p>
+              <div class="tags"><span class="tag port">Cruise day 3</span><span class="tag">Port day</span></div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="day" id="jul21">
+        <div class="day-marker">
+          <div class="date">Tue Jul 21</div>
+          <div class="day-name">Kusadasi / Ephesus</div>
+          <div class="day-context">Primary historical-excursion day.</div>
+        </div>
+        <div class="day-body">
+          <article class="event port">
+            <div class="time">7:00 AM-6:00 PM<span>11h in port</span></div>
+            <div>
+              <h3>Kusadasi, Turkey</h3>
+              <p>Primary draw is Ephesus. Bring passport or required ID per cruise guidance for Turkey port entry.</p>
+              <div class="tags"><span class="tag port">Cruise day 4</span><span class="tag">Ephesus</span></div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="day" id="jul22">
+        <div class="day-marker">
+          <div class="date">Wed Jul 22</div>
+          <div class="day-name">At Sea</div>
+          <div class="day-context">Recovery, ship day, and planning buffer.</div>
+        </div>
+        <div class="day-body">
+          <article class="event open">
+            <div class="time">All day<span>No port</span></div>
+            <div>
+              <h3>Sea day</h3>
+              <p>Use for ship dining, spa, laundry reset, and confirming Valletta and Barcelona plans.</p>
+              <div class="tags"><span class="tag">Cruise day 5</span><span class="tag">Recovery</span></div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="day" id="jul23">
+        <div class="day-marker">
+          <div class="date">Thu Jul 23</div>
+          <div class="day-name">Valletta</div>
+          <div class="day-context">Compact city day in Malta.</div>
+        </div>
+        <div class="day-body">
+          <article class="event port">
+            <div class="time">8:00 AM-5:00 PM<span>9h in port</span></div>
+            <div>
+              <h3>Valletta, Malta</h3>
+              <p>Upper Barrakka Gardens, St. John's Co-Cathedral, Mdina, or a harbor cruise are practical choices within this window.</p>
+              <div class="tags"><span class="tag port">Cruise day 6</span><span class="tag">Port day</span></div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="day" id="jul24">
+        <div class="day-marker">
+          <div class="date">Fri Jul 24</div>
+          <div class="day-name">At Sea</div>
+          <div class="day-context">Pack and prep for Barcelona arrival.</div>
+        </div>
+        <div class="day-body">
+          <article class="event open">
+            <div class="time">All day<span>No port</span></div>
+            <div>
+              <h3>Final sea day</h3>
+              <p>Pack for Barcelona disembarkation, confirm hotel luggage drop, and finalize timed-entry plans.</p>
+              <div class="tags"><span class="tag">Cruise day 7</span><span class="tag">Packing</span></div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="day" id="jul25">
+        <div class="day-marker">
+          <div class="date">Sat Jul 25</div>
+          <div class="day-name">Barcelona</div>
+          <div class="day-context">Disembark, drop bags, and use the full city day.</div>
+        </div>
+        <div class="day-body">
+          <article class="event travel">
+            <div class="time">5:00 AM<span>Ship arrives</span></div>
+            <div>
+              <h3>Arrive Barcelona</h3>
+              <p>Celebrity Xcel arrives early. Disembark timing depends on ship procedures and luggage handling.</p>
+              <div class="tags"><span class="tag travel">Cruise day 8</span><span class="tag">Arrival</span></div>
+            </div>
+          </article>
+          <article class="event open">
+            <div class="time">Morning<span>After offboarding</span></div>
+            <div>
+              <h3>Taxi to hotel and drop bags</h3>
+              <p>Use the Gothic Quarter / El Born / Placa de Catalunya area as the base. Hotel Barcelona Catedral remains the practical target.</p>
+              <div class="tags"><span class="tag">Luggage drop</span><span class="tag">Gothic Quarter</span></div>
+            </div>
+          </article>
+          <article class="event port">
+            <div class="time">Late morning-evening<span>City day</span></div>
+            <div>
+              <h3>Barcelona planning window</h3>
+              <p>Sagrada Familia timed entry, Passeig de Gracia, Gothic Quarter / El Born, and tapas dinner. Keep any ticketed item timed after the luggage drop.</p>
+              <div class="tags"><span class="tag port">Sagrada Familia</span><span class="tag">Tapas dinner</span></div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="day" id="jul26">
+        <div class="day-marker">
+          <div class="date">Sun Jul 26</div>
+          <div class="day-name">Return Home</div>
+          <div class="day-context">Barcelona to Cincinnati via Boston.</div>
+        </div>
+        <div class="day-body">
+          <article class="event open">
+            <div class="time">Morning<span>Barcelona</span></div>
+            <div>
+              <h3>Slow morning and checkout</h3>
+              <p>Keep the morning close to the hotel. Avoid anything that risks the airport arrival target.</p>
+              <div class="tags"><span class="tag">Checkout</span><span class="tag">Short walk</span></div>
+            </div>
+          </article>
+          <article class="event risk">
+            <div class="time">12:15 PM target<span>Airport arrival</span></div>
+            <div>
+              <h3>Arrive BCN for return flight</h3>
+              <p>Target airport arrival about three hours before the 3:15 PM international departure.</p>
+              <div class="tags"><span class="tag risk">Do not stretch</span><span class="tag">BCN</span></div>
+            </div>
+          </article>
+          <article class="event travel">
+            <div class="time">3:15 PM<span>Departs BCN</span></div>
+            <div>
+              <h3>Barcelona to Boston</h3>
+              <p>Delta return itinerary starts. Exact Boston arrival time was not shown in the available return details.</p>
+              <div class="tags"><span class="tag travel">Flight</span><span class="tag">BCN-BOS</span></div>
+            </div>
+          </article>
+          <article class="event layover">
+            <div class="time">Time not shown<span>3h 4m</span></div>
+            <div>
+              <h3>Boston layover</h3>
+              <p>Known layover duration is 3h 4m. Use this for immigration/customs if applicable, bags/recheck if required, and the domestic connection to Cincinnati.</p>
+              <div class="tags"><span class="tag layover">BOS layover</span><span class="tag risk">Exact times missing</span></div>
+            </div>
+          </article>
+          <article class="event travel">
+            <div class="time">11:16 PM<span>Arrive CVG</span></div>
+            <div>
+              <h3>Arrive Cincinnati</h3>
+              <p>Total BCN-CVG itinerary time shown: 14h 1m.</p>
+              <div class="tags"><span class="tag travel">Home</span><span class="tag">Trip complete</span></div>
+            </div>
+          </article>
+        </div>
+      </section>
+    </div>
+
+    <section>
+      <div class="print-row">
+        <div>
+          <h2>Planning Notes</h2>
+          <p>Use this page as the operational version of the trip. The overview page remains the cost, hotel, and source digest.</p>
+        </div>
+        <div class="nav-links"><a href="index.html">Back to overview</a></div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
